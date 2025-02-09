@@ -1,0 +1,98 @@
+<section id="scene-container" class="w-full relative">
+    <div class="w-full h-full absolute flex items-center">
+        <div class="w-full text-center">
+            <span
+                id="welcome-text"
+                class="text-logo-green transition-colors dark:text-primary-light font-mulish font-extrabold text-6xl md:text-8xl lg:text-9xl"
+            ></span>
+        </div>
+    </div>
+    <div class="absolute top-[80%] w-full flex justify-center z-0">
+        <button
+            id="learn-more-btn"
+            class="dark:text-primary-light font-mulish font-bold z-10 border-solid border-4 p-2 border-primary-dark dark:border-primary-light bg-logo-green bg-opacity-85 transition duration-300 ease-in-out hover:bg-green-500 hover:scale-105"
+        >
+            Learn More
+        </button>
+    </div>
+</section>
+
+<script>
+    import { initScene, animate } from "../lib/threeDModel.ts";
+    import initWelcomeText from "../lib/welcomeText";
+
+    // Personal Model
+    const sceneContainer: HTMLElement = document.getElementById(
+        "scene-container",
+    ) as HTMLElement;
+    initScene(sceneContainer);
+    animate();
+
+    // Welcome Text
+    const greetings = [
+        "Hi There!",
+        "Salut là",
+        "¡Hola!",
+        "你好!",
+        "こんにちは",
+        "안녕하세요",
+    ];
+    initWelcomeText("#welcome-text", greetings, 100);
+
+    const learnMoreBtn: HTMLElement = document.getElementById(
+        "learn-more-btn",
+    ) as HTMLElement;
+    learnMoreBtn.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent default scroll behavior
+        const aboutSection: HTMLElement = document.getElementById(
+            "about-section",
+        ) as HTMLElement;
+        aboutSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    });
+</script>
+
+<style>
+    canvas {
+        position: absolute;
+    }
+
+    :global(.typed-cursor) {
+        --tw-text-opacity: 1;
+        color: rgb(87 191 55 / var(--tw-text-opacity, 1));
+        font-family: Mulish, serif;
+        font-size: 3rem;
+        line-height: 1;
+    }
+
+    html.dark :global(.typed-cursor) {
+        --tw-text-opacity: 1;
+        color: rgb(231 231 231 / var(--tw-text-opacity, 1));
+    }
+
+    #scene-container {
+        height: 100vh;
+        max-height: 100vh;
+    }
+
+    @supports (height: 100dvh;) {
+        #scene-container {
+            height: 100dvh;
+            max-height: 100dvh;
+        }
+    }
+
+    @media (min-width: 768px) {
+        :global(.typed-cursor) {
+            font-size: 6rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        :global(.typed-cursor) {
+            font-size: 10rem;
+        }
+    }
+</style>

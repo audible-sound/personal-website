@@ -1,0 +1,316 @@
+<nav
+    class="absolute z-10 w-full flex items-center justify-between px-4 py-6 md:px-10 md:py-4 lg:px-8 max-w-[2000px]"
+>
+    <a href="/" class="w-[10rem] md:w-[16rem]">
+        <img
+            id="main-logo"
+            src="src/assets/Full_Logo_Light.svg"
+            alt="Logo"
+            class="w-full"
+        />
+    </a>
+    <div class="flex items-center justify-evenly gap-6 lg:gap-10">
+        <!-- 
+        Theme toggle button design inspired by: 
+        https://github.com/argyleink/gui-challenges/tree/main/theme-switch
+        -->
+        <button id="theme-toggle" aria-label="Toggle theme">
+            <!-- Button Icon -->
+            <svg
+                class="sun-and-moon md:scale-110"
+                aria-hidden="true"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+            >
+                <mask
+                    class="moon origin-center fill-primary-dark dark:fill-primary-light"
+                    id="moon-mask"
+                >
+                    <rect x="0" y="0" width="100%" height="100%" fill="white"
+                    ></rect>
+                    <circle cx="24" cy="10" r="6" fill="black"></circle>
+                </mask>
+                <circle
+                    class="sun origin-center fill-primary-dark dark:fill-primary-light"
+                    cx="12"
+                    cy="12"
+                    r="6"
+                    mask="url(#moon-mask)"
+                    fill="currentColor"></circle>
+                <g
+                    class="sun-beams origin-center stroke-primary-dark stroke-[2px] dark:opacity-0"
+                    stroke="currentColor"
+                >
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </g>
+            </svg>
+        </button>
+        <!-- Desktop/Tablet Menu -->
+        <div
+            id="desktop-menu-links"
+            class="hidden lg:flex justify-evenly gap-8 dark:text-primary-light font-mulish font-bold text-xl"
+        >
+            <a href="/" id="desktop-about-link">About</a>
+            <a href="/" id="desktop-contact-link">Contact</a>
+            <a
+                href="https://drive.google.com/file/d/1tSRy4XMqle60l9nUtPbFJLuBb0Wy7v9N/view?usp=sharing"
+                target="_blank" rel="noopener noreferrer"
+                >Resume</a
+            >
+        </div>
+
+        <!-- Mobile Menu -->
+        <!--
+        Menu Button design inspired by:
+        https://codepen.io/erikterwan/pen/EVzeRP
+         -->
+        <div class="block lg:hidden z-[1] md:scale-110">
+            <button id="mobile-menu-btn" class="flex flex-col gap-[4px]">
+                <span
+                    class="block bg-primary-dark dark:bg-primary-light w-[24px] h-[4px] rounded-full"
+                ></span>
+                <span
+                    class="block bg-primary-dark dark:bg-primary-light w-[24px] h-[4px] rounded-full"
+                ></span>
+                <span
+                    class="block bg-primary-dark dark:bg-primary-light w-[24px] h-[4px] rounded-full"
+                ></span>
+            </button>
+        </div>
+        <div
+            id="mobile-menu-drawer"
+            class="absolute top-0 right-0 left-0 bottom-0 w-screen h-screen bg-primary-light dark:bg-primary-dark drop-shadow-lg justify-center pt-[25%]"
+        >
+            <ul
+                class="font-mulish font-bold text-xl text-center dark:text-primary-light"
+            >
+                <li class="pointer py-8"><a href="/">About</a></li>
+                <li class="pointer py-8"><a href="/">Contact</a></li>
+                <li class="pointer py-8"><a href="/">Resume</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Theme toggle styling */
+    html.dark .sun-and-moon > .sun {
+        transform: scale(1.75);
+    }
+
+    html.dark .sun-and-moon > .moon > circle {
+        transform: translateX(-7px);
+    }
+
+    @supports (cx: 1) {
+        html.dark .sun-and-moon > .moon > circle {
+            cx: 17;
+            transform: translateX(0);
+        }
+    }
+
+    .sun-and-moon > .sun {
+        transition: transform 0.5s cubic-bezier(0, 0, 0.3, 1);
+    }
+
+    .sun-and-moon > .sun-beams {
+        transition:
+            transform 0.5s cubic-bezier(0, 0, 0.3, 1),
+            opacity 0.5s cubic-bezier(0.25, 0, 0.3, 1);
+    }
+
+    .sun-and-moon .moon > circle {
+        transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
+    }
+
+    @supports (cx: 1) {
+        .sun-and-moon .moon > circle {
+            transition: cx 0.25s cubic-bezier(0, 0, 0, 1);
+        }
+    }
+
+    html.dark .sun-and-moon > .sun {
+        transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+        transition-duration: 0.25s;
+        transform: scale(1.75);
+    }
+
+    html.dark .sun-and-moon > .sun-beams {
+        transition-duration: 0.15s;
+        transform: rotateZ(-25deg);
+    }
+
+    html.dark .sun-and-moon > .moon > circle {
+        transition-duration: 0.5s;
+        transition-delay: 0.25s;
+    }
+
+    /* Navbar links styling */
+    #desktop-menu-links > a::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        transform: scaleX(0);
+        background-color: var(--primary-dark);
+        transform-origin: top left;
+        transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    html.dark #desktop-menu-links > a::before {
+        background-color: var(--primary-light);
+    }
+
+    #desktop-menu-links > a {
+        text-decoration: none;
+        position: relative;
+    }
+
+    #desktop-menu-links > a:hover::before {
+        transform: scaleX(1);
+    }
+
+    /* Mobile menu button styling */
+    #mobile-menu-btn > span {
+        transform-origin: center left;
+        transition:
+            transform 0.45s cubic-bezier(0.77, 0.2, 0.05, 1),
+            opacity 0.5s ease;
+    }
+
+    #mobile-menu-btn > span:nth-child(1).opened {
+        transform: rotate(45deg) translate(0px, -1px);
+    }
+
+    #mobile-menu-btn > span:nth-child(2).opened {
+        opacity: 0;
+        transform: scale(0.2, 0.2);
+    }
+
+    #mobile-menu-btn > span:nth-child(3).opened {
+        transform: rotate(-45deg);
+    }
+
+    /* Mobile menu drawer styling */
+    #mobile-menu-drawer {
+        transform-origin: 0% 0%;
+        transform: translate(100%, 0);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    }
+
+    #mobile-menu-drawer.opened {
+        transform: none;
+    }
+</style>
+
+<script>
+    import { updateStarColours } from "../lib/threeDModel";
+
+    //Change logo variant
+    function toggleLogo(changeDarkLogo: boolean) {
+        const logoElement: HTMLImageElement = document.getElementById(
+            "main-logo",
+        ) as HTMLImageElement;
+        if (changeDarkLogo) {
+            logoElement.src = "src/assets/Full_Logo_Dark.svg";
+        } else {
+            logoElement.src = "src/assets/Full_Logo_Light.svg";
+        }
+    }
+
+    function applyTheme(theme: string) {
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+            toggleLogo(true);
+        } else if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+            toggleLogo(false);
+        }
+    }
+
+    const systemThemePreference = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+    );
+
+    const userThemePrefence = localStorage.getItem("themePreference");
+
+    if (userThemePrefence !== null) {
+        applyTheme(userThemePrefence);
+    } else {
+        applyTheme(systemThemePreference.matches ? "dark" : "light");
+    }
+
+    systemThemePreference.addEventListener("change", (theme) => {
+        if (localStorage.getItem("themePreference") === null) {
+            applyTheme(theme.matches ? "dark" : "light");
+            updateStarColours(theme.matches);
+        }
+    });
+
+    const themeToggleButton: HTMLElement = document.getElementById(
+        "theme-toggle",
+    ) as HTMLElement;
+
+    // Toggle dark mode
+    themeToggleButton.addEventListener("click", () => {
+        const isDarkMode: boolean =
+            document.documentElement.classList.contains("dark");
+        if (isDarkMode) {
+            applyTheme("light");
+            localStorage.setItem("themePreference", "light");
+            updateStarColours(false);
+        } else {
+            applyTheme("dark");
+            localStorage.setItem("themePreference", "dark");
+            updateStarColours(true);
+        }
+    });
+
+    const mobileMenuBtn: HTMLElement = document.getElementById(
+        "mobile-menu-btn",
+    ) as HTMLElement;
+
+    //Open Mobile Menu Drawer
+    mobileMenuBtn.addEventListener("click", () => {
+        const menuLines: Element[] = Array.from(mobileMenuBtn.children);
+        menuLines.forEach((line) => {
+            line.classList.toggle("opened");
+        });
+        const menuDrawer: HTMLElement = document.getElementById(
+            "mobile-menu-drawer",
+        ) as HTMLElement;
+        menuDrawer.classList.toggle("opened");
+    });
+
+    // Nav Link
+    document
+        .getElementById("desktop-about-link")
+        ?.addEventListener("click", (event) => {
+            event.preventDefault();
+            document.getElementById("about-section")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        });
+
+    document
+        .getElementById("desktop-contact-link")
+        ?.addEventListener("click", (event) => {
+            event.preventDefault();
+            document.getElementById("contact-section")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        });
+</script>

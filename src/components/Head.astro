@@ -1,0 +1,63 @@
+---
+/**
+ * TO DO:
+ * Add content for og:image
+ * Add content for twitter:card
+ * Add content for twitter:image
+ * */
+interface MetaTag {
+    name?: string;
+    content?: string;
+    [key: string]: any;
+}
+
+interface HeadProps {
+    title: string;
+    description?: string;
+    keywords?: string;
+    customMeta?: MetaTag[];
+}
+
+const {
+    title = "Audy Wallace Siegle",
+    description,
+    keywords = "portfolio, software engineer, web developer, app development, Flutter, Astro JS, 3D animation, computer science student, frontend developer, backend developer",
+    customMeta = [
+        {
+            name: "og:title",
+            content: "Audy Wallace Siegle - Software Engineer & Web Developer",
+        },
+        { name: "og:description", content: "Discover more about me" },
+        { name: "og:image", content: "" },
+        { name: "og:type", content: "website" },
+        { name: "twitter:card", content: "" },
+        {
+            name: "twitter:title",
+            content: "Audy Wallace Siegle - Software Engineer & Web Developer",
+        },
+        { name: "twitter:description", content: "Discover more about me" },
+        { name: "twitter:image", content: "" },
+        { name: "generator", content: Astro.generator },
+    ],
+} = Astro.props as HeadProps;
+---
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Audy Wallace Siegle" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/Logo_Icon.svg" />
+    <link rel="stylesheet" href="src/assets/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet"
+    />
+    <title>{title}</title>
+
+    <!-- Additional custom meta tags -->
+    {customMeta.map((meta) => <meta {...meta} />)}
+</head>
