@@ -7,7 +7,8 @@ export default {
 			colors: {
 				primary: {
 					light: "#E7E7E7",
-					dark: "#000000"
+					dark: "#000000",
+					blue: "#7f96ff"
 				},
 				secondary: {
 					light: "#D0D0D0",
