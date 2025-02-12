@@ -1,0 +1,153 @@
+<footer class="w-full py-12">
+    <div class="max-w-[1080px] mx-auto px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col items-center md:items-start space-y-4">
+                <h3
+                    class="text-primary-dark dark:text-primary-light font-mulish font-bold text-xl mb-2"
+                >
+                    Built With
+                </h3>
+                <div
+                    class="flex flex-col items-center md:items-start space-y-3"
+                >
+                    <div
+                        class="flex items-center space-x-2 text-primary-dark dark:text-primary-light font-mulish"
+                    >
+                        <img
+                            src="/src/assets/astro-icon-dark.png"
+                            class="w-5 h-5 dark:hidden"
+                            alt="Astro Icon Dark"
+                        />
+                        <img
+                            src="/src/assets/astro-icon-light-gradient.png"
+                            class="w-5 h-5 hidden dark:block"
+                            alt="Astro Icon Light"
+                        />
+                        <span class="font-bold">Astro</span>
+                    </div>
+
+                    <div
+                        class="flex items-center space-x-2 text-primary-dark dark:text-primary-light font-mulish"
+                    >
+                        <img
+                            src="/src/assets/tailwindcss-mark.d52e9897.svg"
+                            class="w-5 h-5"
+                            alt="Tailwind Icon"
+                        />
+                        <span class="font-bold">Tailwind</span>
+                    </div>
+
+                    <div
+                        class="flex items-center space-x-2 text-primary-dark dark:text-primary-light font-mulish"
+                    >
+                        <img
+                            src="/src/assets/vercel-icon-dark.png"
+                            class="w-5 h-5 dark:hidden"
+                            alt="Vercel Icon Dark"
+                        />
+                        <img
+                            src="/src/assets/vercel-icon-light.png"
+                            class="w-5 h-5 hidden dark:block"
+                            alt="Vercel Icon Light"
+                        />
+                        <span class="font-bold">Vercel</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center md:items-end">
+                <h3
+                    class="text-primary-dark dark:text-primary-light font-bold text-xl font-mulish mb-4"
+                >
+                    My Socials
+                </h3>
+                <div class="flex flex-row space-x-6">
+                    <a
+                        href="https://github.com/audible-sound"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex flex-col items-center transition-transform hover:scale-110"
+                        aria-label="GitHub Profile"
+                    >
+                        <div
+                            class="p-3 rounded-full bg-primary-dark dark:bg-primary-light group-hover:shadow-lg transition-all"
+                        >
+                            <img
+                                src="/src/assets/github-mark-white.png"
+                                alt="GitHub Icon"
+                                class="w-6 h-6 object-contain"
+                            />
+                        </div>
+                        <span
+                            class="mt-2 text-sm text-primary-dark dark:text-primary-light font-mulish"
+                        >
+                            GitHub
+                        </span>
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/audy-wallace-siegle/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex flex-col items-center transition-transform hover:scale-110"
+                        aria-label="LinkedIn Profile"
+                    >
+                        <div
+                            class="p-3 rounded-full bg-primary-dark dark:bg-primary-light group-hover:shadow-lg transition-all"
+                        >
+                            <img
+                                src="/src/assets/LI-In-Bug.png"
+                                alt="LinkedIn Icon"
+                                class="w-6 h-6 object-contain"
+                            />
+                        </div>
+                        <span
+                            class="mt-2 text-sm text-primary-dark dark:text-primary-light font-mulish"
+                        >
+                            LinkedIn
+                        </span>
+                    </a>
+
+                    <!-- Discord -->
+                    <a
+                        href="https://discord.com/users/audyws"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex flex-col items-center transition-transform hover:scale-110"
+                        aria-label="Discord Profile"
+                    >
+                        <div
+                            class="p-3 rounded-full bg-primary-dark dark:bg-primary-light group-hover:shadow-lg transition-all"
+                        >
+                            <img
+                                src="/src/assets/icon_clyde_blurple_RGB.png"
+                                alt="Discord Icon"
+                                class="w-6 h-6 object-contain"
+                            />
+                        </div>
+                        <span
+                            class="mt-2 text-sm text-primary-dark dark:text-primary-light font-mulish"
+                        >
+                            Discord
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="mt-8 pt-6 border-t border-primary-dark/20 dark:border-primary-light/20"
+        >
+            <p
+                class="text-center text-sm text-primary-dark dark:text-primary-light font-mulish"
+            >
+                © <span id="year"></span> Audy. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const year = document.querySelector("#year") as HTMLSpanElement;
+    year.textContent = String(new Date().getFullYear());
+</script>
