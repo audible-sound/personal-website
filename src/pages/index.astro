@@ -8,6 +8,8 @@ import Footer from "../components/Footer.astro";
 ---
 
 <HomeLayout>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
     <Navbar />
     <MainSection />
     <div class="w-full h-full bg-gradient-light dark:bg-gradient-dark">
@@ -16,3 +18,61 @@ import Footer from "../components/Footer.astro";
     </div>
     <Footer />
 </HomeLayout>
+
+<style>
+    #cursor-dot {
+        width: 5px;
+        height: 5px;
+        background-color: var(--primary-dark);
+    }
+
+    html.dark #cursor-dot {
+        background-color: var(--primary-light);
+    }
+
+    #cursor-outline {
+        width: 30px;
+        height: 30px;
+        border: 2px solid var(--secondary-dark);
+    }
+
+    html.dark #cursor-outline {
+        border: 2px solid var(--secondary-light);
+    }
+
+    #cursor-dot,
+    #cursor-outline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 100;
+        pointer-events: none;
+    }
+</style>
+
+<script>
+    const cursorDot = document.getElementById("cursor-dot") as HTMLElement;
+    const cursorOutline = document.getElementById(
+        "cursor-outline",
+    ) as HTMLElement;
+    window.addEventListener("mousemove", (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        cursorOutline.style.left = `${posX}px`;
+        cursorOutline.style.top = `${posY}px`;
+
+        cursorOutline.animate(
+            {
+                left: `${posX}px`,
+                top: `${posY}px`,
+            },
+            { duration: 500, fill: "forwards" },
+        );
+    });
+</script>

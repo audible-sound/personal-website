@@ -6,3 +6,7 @@
     --secondary-dark: #1A1A1A;
     --secondary-light: #D8D8D8;
 }
+
+body {
+    cursor: none;
+}
