@@ -62,8 +62,8 @@
             <a href="/" id="desktop-contact-link">Contact</a>
             <a
                 href="https://drive.google.com/file/d/1tSRy4XMqle60l9nUtPbFJLuBb0Wy7v9N/view?usp=sharing"
-                target="_blank" rel="noopener noreferrer"
-                >Resume</a
+                target="_blank"
+                rel="noopener noreferrer">Resume</a
             >
         </div>
 
@@ -87,230 +87,387 @@
         </div>
         <div
             id="mobile-menu-drawer"
-            class="absolute top-0 right-0 left-0 bottom-0 w-screen h-screen bg-primary-light dark:bg-primary-dark drop-shadow-lg justify-center pt-[25%]"
+            class="fixed inset-0 bg-primary-light dark:bg-primary-dark drop-shadow-lg flex flex-col items-center justify-center transition-transform duration-500 ease-in-out transform translate-x-full"
+            role="dialog"
+            aria-modal="true"
         >
+            <!-- Decorative background elements -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div
+                    class="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-primary-blue/20 dark:bg-primary-blue/20"
+                >
+                </div>
+                <div
+                    class="absolute top-1/4 -left-12 w-32 h-32 rounded-full bg-logo-green/30 dark:bg-logo-green/20"
+                >
+                </div>
+                <div
+                    class="absolute bottom-1/4 -right-16 w-40 h-40 rounded-full bg-pink-200/30 dark:bg-pink-500/20"
+                >
+                </div>
+            </div>
             <ul
-                class="font-mulish font-bold text-xl text-center dark:text-primary-light"
+                class="space-y-12 landscape:space-y-0 landscape:flex landscape:items-center landscape:justify-center landscape:gap-16 font-mulish font-bold text-2xl text-center dark:text-primary-light relative"
             >
-                <li class="pointer py-8"><a href="/">About</a></li>
-                <li class="pointer py-8"><a href="/">Contact</a></li>
-                <li class="pointer py-8"><a href="/">Resume</a></li>
+                <li class="transform transition-transform hover:scale-110">
+                    <a
+                        href="/"
+                        class="flex flex-col landscape:flex-row items-center gap-4 landscape:gap-3 group"
+                        id="about-mobile"
+                    >
+                        <svg
+                            width="32"
+                            height="32"
+                            class="landscape:w-6 landscape:h-6"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                            ></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span class="relative z-10">About</span>
+                    </a>
+                </li>
+                <li class="transform transition-transform hover:scale-110">
+                    <a
+                        href="/"
+                        class="flex flex-col landscape:flex-row items-center gap-4 landscape:gap-3 group"
+                        id="contact-mobile"
+                    >
+                        <svg
+                            width="32"
+                            height="32"
+                            class="landscape:w-6 landscape:h-6"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect width="20" height="16" x="2" y="4" rx="2"
+                            ></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                            ></path>
+                        </svg>
+                        <span class="relative z-10">Contact</span>
+                    </a>
+                </li>
+                <li class="transform transition-transform hover:scale-110">
+                    <a
+                        href="https://drive.google.com/file/d/1tSRy4XMqle60l9nUtPbFJLuBb0Wy7v9N/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex flex-col landscape:flex-row items-center gap-4 landscape:gap-3 group"
+                        id="resume-mobile"
+                    >
+                        <svg
+                            width="32"
+                            height="32"
+                            class="landscape:w-6 landscape:h-6"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                            ></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" x2="8" y1="13" y2="13"></line>
+                            <line x1="16" x2="8" y1="17" y2="17"></line>
+                            <line x1="10" x2="8" y1="9" y2="9"></line>
+                        </svg>
+                        <span class="relative z-10">Resume</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-</nav>
 
-<style>
-    /* Theme toggle styling */
-    html.dark .sun-and-moon > .sun {
-        transform: scale(1.75);
-    }
+    <style>
+        /* Theme toggle styling */
+        html.dark .sun-and-moon > .sun {
+            transform: scale(1.75);
+        }
 
-    html.dark .sun-and-moon > .moon > circle {
-        transform: translateX(-7px);
-    }
-
-    @supports (cx: 1) {
         html.dark .sun-and-moon > .moon > circle {
-            cx: 17;
-            transform: translateX(0);
+            transform: translateX(-7px);
         }
-    }
 
-    .sun-and-moon > .sun {
-        transition: transform 0.5s cubic-bezier(0, 0, 0.3, 1);
-    }
+        @supports (cx: 1) {
+            html.dark .sun-and-moon > .moon > circle {
+                cx: 17;
+                transform: translateX(0);
+            }
+        }
 
-    .sun-and-moon > .sun-beams {
-        transition:
-            transform 0.5s cubic-bezier(0, 0, 0.3, 1),
-            opacity 0.5s cubic-bezier(0.25, 0, 0.3, 1);
-    }
+        .sun-and-moon > .sun {
+            transition: transform 0.5s cubic-bezier(0, 0, 0.3, 1);
+        }
 
-    .sun-and-moon .moon > circle {
-        transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
-    }
+        .sun-and-moon > .sun-beams {
+            transition:
+                transform 0.5s cubic-bezier(0, 0, 0.3, 1),
+                opacity 0.5s cubic-bezier(0.25, 0, 0.3, 1);
+        }
 
-    @supports (cx: 1) {
         .sun-and-moon .moon > circle {
-            transition: cx 0.25s cubic-bezier(0, 0, 0, 1);
+            transition: transform 0.25s cubic-bezier(0, 0, 0, 1);
         }
-    }
 
-    html.dark .sun-and-moon > .sun {
-        transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
-        transition-duration: 0.25s;
-        transform: scale(1.75);
-    }
+        @supports (cx: 1) {
+            .sun-and-moon .moon > circle {
+                transition: cx 0.25s cubic-bezier(0, 0, 0, 1);
+            }
+        }
 
-    html.dark .sun-and-moon > .sun-beams {
-        transition-duration: 0.15s;
-        transform: rotateZ(-25deg);
-    }
+        html.dark .sun-and-moon > .sun {
+            transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+            transition-duration: 0.25s;
+            transform: scale(1.75);
+        }
 
-    html.dark .sun-and-moon > .moon > circle {
-        transition-duration: 0.5s;
-        transition-delay: 0.25s;
-    }
+        html.dark .sun-and-moon > .sun-beams {
+            transition-duration: 0.15s;
+            transform: rotateZ(-25deg);
+        }
 
-    /* Navbar links styling */
-    #desktop-menu-links > a::before {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 100%;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        transform: scaleX(0);
-        background-color: var(--primary-dark);
-        transform-origin: top left;
-        transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
+        html.dark .sun-and-moon > .moon > circle {
+            transition-duration: 0.5s;
+            transition-delay: 0.25s;
+        }
 
-    html.dark #desktop-menu-links > a::before {
-        background-color: var(--primary-light);
-    }
+        /* Navbar links styling */
+        #desktop-menu-links > a::before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            background-color: var(--primary-dark);
+            transform-origin: top left;
+            transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
 
-    #desktop-menu-links > a {
-        text-decoration: none;
-        position: relative;
-    }
+        html.dark #desktop-menu-links > a::before {
+            background-color: var(--primary-light);
+        }
 
-    #desktop-menu-links > a:hover::before {
-        transform: scaleX(1);
-    }
+        #desktop-menu-links > a {
+            text-decoration: none;
+            position: relative;
+        }
 
-    /* Mobile menu button styling */
-    #mobile-menu-btn > span {
-        transform-origin: center left;
-        transition:
-            transform 0.45s cubic-bezier(0.77, 0.2, 0.05, 1),
-            opacity 0.5s ease;
-    }
+        #desktop-menu-links > a:hover::before {
+            transform: scaleX(1);
+        }
 
-    #mobile-menu-btn > span:nth-child(1).opened {
-        transform: rotate(45deg) translate(0px, -1px);
-    }
+        /* Mobile menu button styling */
+        #mobile-menu-btn > span {
+            transform-origin: center left;
+            transition:
+                transform 0.45s cubic-bezier(0.77, 0.2, 0.05, 1),
+                opacity 0.5s ease;
+        }
 
-    #mobile-menu-btn > span:nth-child(2).opened {
-        opacity: 0;
-        transform: scale(0.2, 0.2);
-    }
+        #mobile-menu-btn > span:nth-child(1).opened {
+            transform: rotate(45deg) translate(0px, -1px);
+        }
 
-    #mobile-menu-btn > span:nth-child(3).opened {
-        transform: rotate(-45deg);
-    }
+        #mobile-menu-btn > span:nth-child(2).opened {
+            opacity: 0;
+            transform: scale(0.2, 0.2);
+        }
 
-    /* Mobile menu drawer styling */
-    #mobile-menu-drawer {
-        transform-origin: 0% 0%;
-        transform: translate(100%, 0);
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-    }
+        #mobile-menu-btn > span:nth-child(3).opened {
+            transform: rotate(-45deg);
+        }
 
-    #mobile-menu-drawer.opened {
-        transform: none;
-    }
-</style>
+        /* Mobile menu drawer styling */
+        #mobile-menu-drawer {
+            transform-origin: 0% 0%;
+            transform: translate(100%, 0);
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
 
-<script>
-    import { updateStarColours } from "../lib/threeDModel";
+        #mobile-menu-drawer.opened {
+            transform: none;
+        }
 
-    //Change logo variant
-    function toggleLogo(changeDarkLogo: boolean) {
-        const logoElement: HTMLImageElement = document.getElementById(
-            "main-logo",
-        ) as HTMLImageElement;
-        if (changeDarkLogo) {
-            logoElement.src = "src/assets/Full_Logo_Dark.svg";
+        /* Animation for background elements */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        #mobile-menu-drawer .absolute {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        #mobile-menu-drawer .absolute:nth-child(2) {
+            animation-delay: -2s;
+        }
+
+        #mobile-menu-drawer .absolute:nth-child(3) {
+            animation-delay: -4s;
+        }
+    </style>
+
+    <script>
+        import { updateStarColours } from "../lib/threeDModel";
+
+        //Change logo variant
+        function toggleLogo(changeDarkLogo: boolean) {
+            const logoElement: HTMLImageElement = document.getElementById(
+                "main-logo",
+            ) as HTMLImageElement;
+            if (changeDarkLogo) {
+                logoElement.src = "src/assets/Full_Logo_Dark.svg";
+            } else {
+                logoElement.src = "src/assets/Full_Logo_Light.svg";
+            }
+        }
+
+        function applyTheme(theme: string) {
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark");
+                toggleLogo(true);
+            } else if (theme === "light") {
+                document.documentElement.classList.remove("dark");
+                toggleLogo(false);
+            }
+        }
+
+        const systemThemePreference = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+        );
+
+        const userThemePrefence = localStorage.getItem("themePreference");
+
+        if (userThemePrefence !== null) {
+            applyTheme(userThemePrefence);
         } else {
-            logoElement.src = "src/assets/Full_Logo_Light.svg";
+            applyTheme(systemThemePreference.matches ? "dark" : "light");
         }
-    }
 
-    function applyTheme(theme: string) {
-        if (theme === "dark") {
-            document.documentElement.classList.add("dark");
-            toggleLogo(true);
-        } else if (theme === "light") {
-            document.documentElement.classList.remove("dark");
-            toggleLogo(false);
-        }
-    }
-
-    const systemThemePreference = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-    );
-
-    const userThemePrefence = localStorage.getItem("themePreference");
-
-    if (userThemePrefence !== null) {
-        applyTheme(userThemePrefence);
-    } else {
-        applyTheme(systemThemePreference.matches ? "dark" : "light");
-    }
-
-    systemThemePreference.addEventListener("change", (theme) => {
-        if (localStorage.getItem("themePreference") === null) {
-            applyTheme(theme.matches ? "dark" : "light");
-            updateStarColours(theme.matches);
-        }
-    });
-
-    const themeToggleButton: HTMLElement = document.getElementById(
-        "theme-toggle",
-    ) as HTMLElement;
-
-    // Toggle dark mode
-    themeToggleButton.addEventListener("click", () => {
-        const isDarkMode: boolean =
-            document.documentElement.classList.contains("dark");
-        if (isDarkMode) {
-            applyTheme("light");
-            localStorage.setItem("themePreference", "light");
-            updateStarColours(false);
-        } else {
-            applyTheme("dark");
-            localStorage.setItem("themePreference", "dark");
-            updateStarColours(true);
-        }
-    });
-
-    const mobileMenuBtn: HTMLElement = document.getElementById(
-        "mobile-menu-btn",
-    ) as HTMLElement;
-
-    //Open Mobile Menu Drawer
-    mobileMenuBtn.addEventListener("click", () => {
-        const menuLines: Element[] = Array.from(mobileMenuBtn.children);
-        menuLines.forEach((line) => {
-            line.classList.toggle("opened");
+        systemThemePreference.addEventListener("change", (theme) => {
+            if (localStorage.getItem("themePreference") === null) {
+                applyTheme(theme.matches ? "dark" : "light");
+                updateStarColours(theme.matches);
+            }
         });
-        const menuDrawer: HTMLElement = document.getElementById(
-            "mobile-menu-drawer",
-        ) as HTMLElement;
-        menuDrawer.classList.toggle("opened");
-    });
 
-    // Nav Link
-    document
-        .getElementById("desktop-about-link")
-        ?.addEventListener("click", (event) => {
-            event.preventDefault();
+        const themeToggleButton: HTMLElement = document.getElementById(
+            "theme-toggle",
+        ) as HTMLElement;
+
+        // Toggle dark mode
+        themeToggleButton.addEventListener("click", () => {
+            const isDarkMode: boolean =
+                document.documentElement.classList.contains("dark");
+            if (isDarkMode) {
+                applyTheme("light");
+                localStorage.setItem("themePreference", "light");
+                updateStarColours(false);
+            } else {
+                applyTheme("dark");
+                localStorage.setItem("themePreference", "dark");
+                updateStarColours(true);
+            }
+        });
+
+        const mobileMenuBtn: HTMLElement = document.getElementById(
+            "mobile-menu-btn",
+        ) as HTMLElement;
+
+        function toggleMenuDrawer() {
+            const menuLines: Element[] = Array.from(mobileMenuBtn.children);
+            menuLines.forEach((line) => {
+                line.classList.toggle("opened");
+            });
+            const menuDrawer: HTMLElement = document.getElementById(
+                "mobile-menu-drawer",
+            ) as HTMLElement;
+            menuDrawer.classList.toggle("opened");
+
+            //Scroll Lock
+            document.body.classList.toggle("overflow-hidden");
+        }
+
+        //Open Mobile Menu Drawer
+        mobileMenuBtn.addEventListener("click", toggleMenuDrawer);
+
+        function scrollToAbout() {
             document.getElementById("about-section")?.scrollIntoView({
                 behavior: "smooth",
                 block: "start",
             });
-        });
+        }
 
-    document
-        .getElementById("desktop-contact-link")
-        ?.addEventListener("click", (event) => {
-            event.preventDefault();
+        function scrollToContact() {
             document.getElementById("contact-section")?.scrollIntoView({
                 behavior: "smooth",
                 block: "start",
             });
-        });
-</script>
+        }
+
+        // Nav Link
+        document
+            .getElementById("desktop-about-link")
+            ?.addEventListener("click", (event) => {
+                event.preventDefault();
+                scrollToAbout();
+            });
+
+        document
+            .getElementById("desktop-contact-link")
+            ?.addEventListener("click", (event) => {
+                event.preventDefault();
+                toggleMenuDrawer();
+                scrollToContact();
+            });
+
+        // Nav Link For Mobile Drawer
+        document
+            .getElementById("about-mobile")
+            ?.addEventListener("click", (event) => {
+                event.preventDefault();
+                toggleMenuDrawer();
+                scrollToAbout();
+            });
+
+        document
+            .getElementById("contact-mobile")
+            ?.addEventListener("click", (event) => {
+                event.preventDefault();
+                toggleMenuDrawer();
+                scrollToContact();
+            });
+
+        document
+            .getElementById("resume-mobile")
+            ?.addEventListener("click", (event) => {
+                toggleMenuDrawer();
+            });
+    </script>
+</nav>

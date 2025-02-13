@@ -33,6 +33,7 @@ import Footer from "../components/Footer.astro";
     #cursor-outline {
         width: 30px;
         height: 30px;
+        opacity: 70%;
         border: 2px solid var(--secondary-dark);
     }
 
@@ -49,6 +50,13 @@ import Footer from "../components/Footer.astro";
         border-radius: 50%;
         z-index: 100;
         pointer-events: none;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        #cursor-dot,
+        #cursor-outline {
+            display: none;
+        }
     }
 </style>
 
