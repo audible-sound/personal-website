@@ -443,7 +443,6 @@
             .getElementById("desktop-contact-link")
             ?.addEventListener("click", (event) => {
                 event.preventDefault();
-                toggleMenuDrawer();
                 scrollToContact();
             });
 
@@ -466,7 +465,7 @@
 
         document
             .getElementById("resume-mobile")
-            ?.addEventListener("click", (event) => {
+            ?.addEventListener("click", () => {
                 toggleMenuDrawer();
             });
     </script>
