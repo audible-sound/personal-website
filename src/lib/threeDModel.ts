@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/Addons";
+import wavingGLB from "../assets/models/Waving.glb";
 
 export let scene: THREE.Scene;
 export let camera: THREE.PerspectiveCamera;
@@ -79,7 +80,7 @@ export function initScene(container: HTMLElement) {
     // Load Model
     const loader = new GLTFLoader();
     loader.load(
-        'src/assets/Waving.glb',
+        wavingGLB,
         (gltf) => {
             const model = gltf.scene;
             model.scale.set(0.15, 0.15, 0.15);
