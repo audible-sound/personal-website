@@ -48,6 +48,10 @@
             </p>
         </div>
 
+        <div id="statusMessage" class="max-w-2xl mx-auto mb-4 hidden">
+            <div class="p-4 rounded-lg text-sm font-medium font-mulish"></div>
+        </div>
+
         <form
             id="contactForm"
             data-aos="zoom-in"
@@ -71,6 +75,9 @@
                         class="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-700 text-primary-dark dark:text-primary-light focus:ring-2 focus:ring-primary-blue focus:border-transparent transition duration-200 outline-none"
                         placeholder="Your name"
                     />
+                    <span
+                        class="error-message text-red-500 text-sm hidden font-mulish"
+                    ></span>
                 </div>
                 <div class="space-y-2">
                     <label
@@ -87,6 +94,9 @@
                         class="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-700 text-primary-dark dark:text-primary-light focus:ring-2 focus:ring-primary-blue focus:border-transparent transition duration-200 outline-none"
                         placeholder="your.email@example.com"
                     />
+                    <span
+                        class="error-message text-red-500 text-sm hidden font-mulish"
+                    ></span>
                 </div>
             </div>
 
@@ -105,6 +115,9 @@
                     class="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-700 text-primary-dark dark:text-primary-light focus:ring-2 focus:ring-primary-blue focus:border-transparent transition duration-200 outline-none"
                     placeholder="What's this about?"
                 />
+                <span
+                    class="error-message text-red-500 text-sm hidden font-mulish"
+                ></span>
             </div>
 
             <div class="space-y-2">
@@ -121,9 +134,13 @@
                     required
                     class="w-full px-4 py-3 rounded-lg bg-white dark:bg-white/10 border border-gray-300 dark:border-gray-700 text-primary-dark dark:text-primary-light focus:ring-2 focus:ring-primary-blue focus:border-transparent transition duration-200 outline-none resize-none"
                     placeholder="Tell me about your project..."></textarea>
+                <span
+                    class="error-message text-red-500 text-sm hidden font-mulish"
+                ></span>
             </div>
 
             <button
+                id="submitButton"
                 type="submit"
                 class="w-full md:w-auto px-8 py-3 bg-primary-blue hover:bg-blue-600 text-white font-mulish font-medium rounded-lg transition duration-200 transform hover:scale-[1.02] focus:ring-2 focus:ring-primary-blue focus:ring-offset-2"
             >
@@ -175,6 +192,10 @@
         transition: background-color 5000s ease-in-out 0s;
     }
 
+    :global(.input-error) {
+        border-color: rgb(239 68 68) !important;
+    }
+
     @media (max-width: 402px) {
         #contact-title::after {
             top: 90%;
@@ -187,10 +208,114 @@
     const contactForm = document.getElementById(
         "contactForm",
     ) as HTMLFormElement;
+    const submitButton = document.getElementById(
+        "submitButton",
+    ) as HTMLButtonElement;
+    const statusMessage = document.getElementById(
+        "statusMessage",
+    ) as HTMLElement;
+    const statusMessageContent = statusMessage.querySelector(
+        "div",
+    ) as HTMLElement;
+
+    const showError = (element: HTMLElement, message: string) => {
+        const errorElement = element.nextElementSibling as HTMLElement;
+        element.classList.add("input-error");
+        errorElement.textContent = message;
+        errorElement.classList.remove("hidden");
+    };
+
+    const hideError = (element: HTMLElement) => {
+        const errorElement = element.nextElementSibling as HTMLElement;
+        element.classList.remove("input-error");
+        errorElement.classList.add("hidden");
+    };
+
+    const showStatus = (type: string, message: string) => {
+        statusMessage.classList.remove("hidden");
+        statusMessageContent.className = "p-4 rounded-lg text-sm font-medium";
+
+        if (type === "error") {
+            statusMessageContent.classList.add(
+                "bg-red-100",
+                "dark:bg-red-900/20",
+                "text-red-800",
+                "dark:text-red-200",
+            );
+        } else {
+            statusMessageContent.classList.add(
+                "bg-green-100",
+                "dark:bg-green-900/20",
+                "text-green-800",
+                "dark:text-green-200",
+            );
+        }
+
+        statusMessageContent.textContent = message;
+
+        // Hide status message after 5 seconds
+        setTimeout(() => {
+            statusMessage.classList.add("hidden");
+        }, 5000);
+    };
+
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const validateField = (field: HTMLInputElement | HTMLTextAreaElement) => {
+        if (field.required && !field.value.trim()) {
+            showError(
+                field,
+                `${field.name.charAt(0).toUpperCase() + field.name.slice(1)} is required`,
+            );
+            return false;
+        }
+
+        if (field.type === "email" && !validateEmail(field.value)) {
+            showError(field, "Please enter a valid email address");
+            return false;
+        }
+
+        if (field.minLength && field.value.length < field.minLength) {
+            showError(
+                field,
+                `${field.name.charAt(0).toUpperCase() + field.name.slice(1)} must be at least ${field.minLength} characters`,
+            );
+            return false;
+        }
+
+        hideError(field);
+        return true;
+    };
+
+    const inputs = contactForm.querySelectorAll(
+        "input, textarea",
+    ) as NodeListOf<HTMLInputElement | HTMLTextAreaElement>;
+    inputs.forEach((input) => {
+        input.addEventListener("input", () => validateField(input));
+    });
+
     contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const formData = new FormData(contactForm);
         const payload = Object.fromEntries(formData.entries());
+
+        let isValid = true;
+        inputs.forEach((input) => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            showStatus("error", "Please fix the errors before submitting.");
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
 
         try {
             const response = await fetch("/api/email", {
@@ -207,14 +332,26 @@
             });
             const data = await response.json();
 
-            console.log(response);
-
             if (!response.ok) {
                 throw new Error(data.message || "An error occurred");
             }
+            showStatus(
+                "success",
+                "Message sent successfully! I'll get back to you soon.",
+            );
             contactForm.reset();
         } catch (error) {
-            console.error(error);
+            const errorMessage =
+                error instanceof Error
+                    ? error.message
+                    : "Failed to send message. Please try again.";
+            showStatus(
+                "error",
+                errorMessage || "Failed to send message. Please try again.",
+            );
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Send Message";
         }
     });
 </script>
