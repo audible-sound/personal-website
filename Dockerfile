@@ -12,6 +12,14 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
+# Secret Arguments
+ARG EMAIL_ADDRESS
+ARG EMAIL_PASS
+ARG PERSONAL_EMAIL
+
+ENV EMAIL_ADDRESS=${EMAIL_ADDRESS}
+ENV EMAIL_PASS=${EMAIL_PASS}
+ENV PERSONAL_EMAIL=${PERSONAL_EMAIL}
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build

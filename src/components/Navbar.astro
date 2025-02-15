@@ -87,7 +87,7 @@
         </div>
         <div
             id="mobile-menu-drawer"
-            class="fixed inset-0 bg-primary-light dark:bg-primary-dark drop-shadow-lg flex flex-col items-center justify-center transition-transform duration-500 ease-in-out transform translate-x-full"
+            class="fixed inset-0 w-screen h-screen bg-primary-light dark:bg-primary-dark drop-shadow-lg flex flex-col items-center justify-center transition-transform duration-500 ease-in-out transform translate-x-full"
             role="dialog"
             aria-modal="true"
         >
@@ -301,6 +301,16 @@
             transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
+
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @supports (height: 100dvh) {
+            #mobile-menu-drawer {
+                height: 100dvh;
+            }
         }
 
         #mobile-menu-drawer.opened {

@@ -5,9 +5,9 @@ import nodemailer from "nodemailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 import { z } from 'zod';
 
-const EMAIL_ADDRESS: string = import.meta.env.EMAIL_ADDRESS;
-const EMAIL_PASS: string = import.meta.env.EMAIL_PASS;
-const PERSONAL_EMAIL: string = import.meta.env.PERSONAL_EMAIL;
+const EMAIL_ADDRESS: string = process.env.EMAIL_ADDRESS || import.meta.env.EMAIL_ADDRESS;
+const EMAIL_PASS: string = process.env.EMAIL_PASS || import.meta.env.EMAIL_PASS;
+const PERSONAL_EMAIL: string = process.env.PERSONAL_EMAIL || import.meta.env.PERSONAL_EMAIL;
 
 const contactFormSchema = z.object({
     senderName: z.string().min(2, 'Name must be at least 2 characters').max(50, 'Name must be less than 50 characters'),
